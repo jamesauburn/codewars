@@ -45,14 +45,46 @@
 // s => r-s-OK = 2
 // Answer = 14 + 16 + 4 + 2 + 9 + 6 + 10 + 6 + 2 = 69
 
-import java.util.Arrays;
+public class Dinglemouse {
 
-class Main{
-	public static void main(String[] args){
-		String words = "jamie auburn";
-		String[] letters = words.split("");
-		System.out.println(Arrays.toString(letters));
-	}
+  public static int tvRemote(final String words) {
+    // Your code here
+    String currentKeys = "abcde123fghij456klmno789pqrst.@0uvwxyz_/";
+    String otherKeys = "ABCDE123FGHIJ456KLMNO789PQRST.@0UVWXYZ_/";
+    String hold = "";
+    String[] letters = words.split("");
+    int moves = 0;
+    int keyPress = 1;
+    int x = 0; // x 0 - 7 %8 
+    int y = 0; // y 0 - 4 /8
+    int indexX = 0;
+    int indexY = 0;
+    
+    for(String letter : letters){
+      if(letter.equals(" ")){
+        moves += (Math.abs(x - 1) + Math.abs(y - 5) + keyPress);
+        x = 1;
+        y = 5;
+      }
+      else{
+        if(!currentKeys.contains(letter)){
+          moves += (Math.abs(x - 0) + Math.abs(y - 5) + keyPress);
+          x = 0;  
+          y = 5;
+          hold = currentKeys;
+          currentKeys = otherKeys;
+          otherKeys = hold;
+        }
+        int position = currentKeys.indexOf(letter);
+        indexX = position % 8;
+        indexY = position / 8;
+        moves += (Math.abs(x - indexX) + Math.abs(y - indexY) + keyPress);
+        x = indexX;
+        y = indexY;
+      }
+    }
+    return moves;
+  }  
 }
 
 
