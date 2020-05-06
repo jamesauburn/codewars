@@ -50,43 +50,43 @@ public class Matrix<E> {
 
 	private final int rows;
 	private final int cols;
-	private E[][] matrixx;
+	private E[][] mtx;
 
     public Matrix(int rows, int cols) {
         // TODO: Write constructor
         this.rows = rows;
         this.cols = cols;
-        matrixx = (E[][]) new Object[rows][cols];
+        mtx = (E[][]) new Object[rows][cols];
     }
     
     // TODO: Add get, set, setRow, swap and toArray
     public E get(int r, int c){
-      return matrixx[r-1][c-1];
+      return mtx[r-1][c-1];
     }
 
     public void set(int r, int c, E v){
-    	matrixx[r-1][c-1] = v;
+    	mtx[r-1][c-1] = v;
     }
 
     public void setRow(int r, E[] v){
     	int count = 0;
     	for(E i : v){
-    		matrixx[r-1][count] = i;
+    		mtx[r-1][count] = i;
     		count++;
     	}
     }
 
     public void swap(int rF, int cF, int rT, int cT){
-    	E temp = matrixx[rF-1][cF-1];
-    	matrixx[rF-1][cF-1] = matrixx[rT-1][cT-1];
-    	matrixx[rT-1][cT-1] = temp;
+    	E temp = mtx[rF-1][cF-1];
+    	mtx[rF-1][cF-1] = mtx[rT-1][cT-1];
+    	mtx[rT-1][cT-1] = temp;
     }
 
     public String[][] toArray(){
       String[][] a = new String[rows][cols]; 
         for (int i = 0; i < rows; i++){
           for (int j = 0; j < cols; j++){
-            a[i][j] = matrixx[i][j].toString(); 
+            a[i][j] = mtx[i][j].toString(); 
           }
         }
     	return a;
