@@ -24,19 +24,22 @@
 
 // 0 < start <= end
 
-public class Dinglemouse {
 
-    public static int[] paintLetterboxes(final int start, final int end) {
-    // Your code here
+public class Kata {
+    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        int[] values = new int[10];
-        for (int i = start; i <= end; i++){
-            int n = i;
-            while (n > 0){
-                values[n%10] += 1;
-                n /= 10;
-            }
+    public static String speedify(final String input) {
+        char[] finalWord = new char[125];
+        for (int i=0; i<125; i++){
+            finalWord[i] = ' ';
         }
-        return values;
+        int i = 0;
+        for (char ch: input.toCharArray()) {
+            int n = ALPHABET.indexOf(ch);
+            finalWord[n+i] = ch;
+            i++;
+        }
+
+        return String.valueOf(finalWord).replaceAll("\\s+$", ""); // your code here
     }
 }
